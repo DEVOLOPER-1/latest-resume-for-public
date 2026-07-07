@@ -1,0 +1,64 @@
+sequenceDiagram
+    autonumber
+    actor Maintainer as Project Maintainer
+    participant Repo as Git Repository
+    participant Shell as Local Shell
+    participant UV as uv Tooling
+    participant BuilderPy as src/build.py
+    participant Latex as pdflatex
+    participant GH as GitHub Repository
+    participant Actions as GitHub Actions Workflow
+    participant Docker as Docker Build/Run in CI
+    participant Pages as GitHub Pages
+
+    Maintainer->>Repo: Clone/pull repository
+    Maintainer->>Shell: Enter project directory
+    Shell->>Shell: Read .python-version (3.12)
+    Shell->>UV: uv sync
+    alt Dependency sync succeeds
+        UV-->>Shell: Environment ready
+    else Dependency sync fails
+        UV-->>Maintainer: Install/configuration error output
+    end
+
+    loop Feature/content iteration
+        Maintainer->>Shell: Edit src/data.yaml and/or src/template.tex
+        opt Build logic change
+            Maintainer->>Shell: Edit src/build.py
+        end
+        opt Optional linting
+            Maintainer->>UV: uv run ruff check .
+        end
+        Maintainer->>UV: uv run src/build.py
+        BuilderPy->>Latex: Compile generated.tex to PDF
+        alt Local build succeeds
+            UV-->>Maintainer: resume.pdf updated in project root
+        else Local build fails
+            UV-->>Maintainer: Validation/LaTeX error logs
+            Maintainer->>Shell: Fix YAML/template/build logic and retry
+        end
+    end
+
+    Maintainer->>GH: Push commit to main
+    GH->>Actions: Trigger build-deploy workflow (push)
+    Note over GH,Actions: Manual trigger is also available via workflow_dispatch.
+    Actions->>Docker: Build cached CI image from Dockerfile
+    Actions->>Docker: Run containerized command (uv sync --frozen && uv run src/build.py)
+    alt CI build and deploy succeed
+        Actions->>Pages: Publish _site/index.html + resume.pdf
+        Pages-->>Maintainer: Updated public URL available
+    else CI fails
+        Actions-->>Maintainer: Failed run with step logs
+        Maintainer->>Actions: Open logs, identify failing step, patch code/config, push again
+    end
+
+    opt Environment and configuration maintenance
+        Maintainer->>Shell: Update pyproject.toml/uv.lock dependencies
+        Maintainer->>Shell: Update Dockerfile TeX/Python runtime when needed
+        Maintainer->>Shell: Update .github/workflows/build-deploy.yml pipeline behavior
+    end
+
+    Note over Maintainer,Repo: Database migrations are not part of this codebase (no DB layer implemented).
+    Note over Maintainer,Repo: No dedicated automated test suite is currently present in repository files.
+    Note over Maintainer,Actions: Monitoring/debugging is primarily GitHub Actions logs + run status.
+    Note over Maintainer,GH: Formal release/tag automation is not implemented in current workflow.

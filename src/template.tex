@@ -1,0 +1,306 @@
+\documentclass[10pt, letterpaper]{article}
+
+\usepackage[
+    ignoreheadfoot,
+    top=2 cm,
+    bottom=2 cm,
+    left=2 cm,
+    right=2 cm,
+    footskip=1.0 cm,
+]{geometry}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 0, 0}
+\definecolor{linkColor}{RGB}{0, 0, 139}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage[
+    pdftitle={<< personal.name >>'s CV},
+    pdfauthor={<< personal.name >>},
+    pdfcreator={LaTeX with Jinja2},
+    colorlinks=true,
+    linkcolor=linkColor,
+    urlcolor=linkColor
+]{hyperref}
+\usepackage[pscoord]{eso-pic}
+\usepackage{calc}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{changepage}
+\usepackage{paracol}
+\usepackage{ifthen}
+\usepackage{needspace}
+\usepackage{iftex}
+
+\ifPDFTeX
+    \usepackage[T1]{fontenc}
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+\usepackage{charter}
+
+\raggedright
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    -1pt
+}{
+    0.3 cm
+}{
+    0.2 cm
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$}
+
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=2pt,
+        leftmargin=0 cm + 10pt
+    ]
+}{
+    \end{itemize}
+}
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0 cm + 0.00001 cm}{0 cm + 0.00001 cm}
+}{
+    \end{adjustwidth}
+}
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+}
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+}
+
+\let\hrefWithoutArrow\href
+% Customize this single URL macro to point to the latest online document.
+\newcommand{\LatestArticleURL}{https://devoloper-1.github.io/latest-resume/}
+% Customize this label macro to change button text in the PDF.
+\newcommand{\LatestArticleLabel}{Download Latest Resume}
+\newcommand{\LatestVersionButton}{
+    \fcolorbox{linkColor}{linkColor}{%
+        \footnotesize\bfseries%
+        \href{\LatestArticleURL}{\textcolor{white}{\LatestArticleLabel}}%
+    }
+}
+
+\begin{document}
+    \AddToShipoutPictureFG*{
+        \AtPageUpperLeft{
+            \raisebox{-1.1cm}[0pt][0pt]{
+                \makebox[\paperwidth][r]{\hspace*{-2cm}\LatestVersionButton}
+            }
+        }
+    }
+
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{$|$}
+
+    \begin{header}
+        \fontsize{25 pt}{25 pt}\selectfont << personal.name >>
+
+        \vspace{5 pt}
+
+        \normalsize
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{mailto:<< personal.email >>}{<< personal.email >>}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{tel:<< personal.phone_href >>}{<< personal.phone_display >>}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{<< personal.website.url >>}{<< personal.website.display >>}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{<< personal.linkedin.url >>}{<< personal.linkedin.display >>}}%
+        \kern 5.0 pt%
+        \AND%
+        \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{<< personal.github.url >>}{<< personal.github.display >>}}%
+    \end{header}
+
+    \vspace{0.1cm}
+
+
+    \section{Education}
+
+    \begin{twocolentry}{<< education.date >>}
+        \textbf{<< education.institution >>}, << education.degree >>
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item \textbf{GPA:} << education.gpa >>
+            \item \textbf{Coursework:} << education.coursework >>
+        \end{highlights}
+    \end{onecolentry}
+
+
+    \section{Experience}
+
+<% for job in experience %>
+    \begin{twocolentry}{<< job.date >>}
+        \textbf{<< job.title >>}, << job.company >>
+    \end{twocolentry}
+
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+<% for item in job.highlights %>
+            \item << item >>
+<% endfor %>
+        \end{highlights}
+    \end{onecolentry}
+<% if not loop.last %>
+
+    \vspace{0.2cm}
+
+<% endif %>
+<% endfor %>
+
+
+    \section{Projects}
+
+<% for project in projects %>
+    \begin{twocolentry}{
+        \href{<< project.github_url >>}{GitHub Link}
+    }
+        \textbf{<< project.title >>}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+<% for item in project.highlights %>
+            \item << item >>
+<% endfor %>
+        \end{highlights}
+    \end{onecolentry}
+<% if not loop.last %>
+
+    \vspace{0.2cm}
+
+<% endif %>
+<% endfor %>
+
+
+    \section{Technologies}
+
+    \vspace{0.10cm}
+
+<% for tech in technologies %>
+    \begin{onecolentry}
+        \textbf{<< tech.category >>:} << tech.tools >>
+    \end{onecolentry}
+<% if not loop.last %>
+
+    \vspace{0.12cm}
+
+<% endif %>
+<% endfor %>
+
+
+    \section{Extra Courses}
+
+<% for course in courses %>
+    \begin{twocolentry}{<< course.date >>}
+        \textbf{\href{<< course.title_url >>}{<< course.title >>}}<% if course.institution %> --- << course.institution >><% endif %>
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+<% for item in course.highlights %>
+            \item << item >>
+<% endfor %>
+        \end{highlights}
+    \end{onecolentry}
+<% if not loop.last %>
+
+    \vspace{0.2cm}
+
+<% endif %>
+<% endfor %>
+
+
+    \section{Honors \& Awards}
+
+<% for honor in honors %>
+    \begin{twocolentry}{<< honor.date >>}
+        \textbf{<< honor.title >>} \\
+        Issued by \href{<< honor.issuer_url >>}{<< honor.issuer >>} \\
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+<% for item in honor.highlights %>
+            \item << item >>
+<% endfor %>
+        \end{highlights}
+    \end{onecolentry}
+<% if not loop.last %>
+
+    \vspace{0.2cm}
+
+<% endif %>
+<% endfor %>
+
+
+    \section{Extracurricular Activities}
+
+<% for activity in extracurricular %>
+    \begin{twocolentry}{<< activity.date >>}
+        \textbf{<< activity.role >>} --- \href{<< activity.org_url >>}{<< activity.org >>}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+    \begin{onecolentry}
+        \begin{highlights}
+<% for item in activity.highlights %>
+            \item << item >>
+<% endfor %>
+        \end{highlights}
+    \end{onecolentry}
+<% if not loop.last %>
+
+    \vspace{0.2cm}
+
+<% endif %>
+<% endfor %>
+
+\end{document}

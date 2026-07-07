@@ -1,0 +1,90 @@
+sequenceDiagram
+    autonumber
+    actor Maintainer as Repository Maintainer
+    participant GH as GitHub Events
+    participant Queue as Actions Job Queue
+    participant BuildJob as Actions Runner (build job)
+    participant Buildx as docker/build-push-action
+    participant Docker as Docker Engine
+    participant Builder as resume-builder:ci container
+    participant UV as uv
+    participant BuilderPy as src/build.py
+    participant YAML as src/data.yaml
+    participant Jinja as Jinja2 Renderer
+    participant Latex as pdflatex
+    participant Artifact as upload-pages-artifact
+    participant DeployJob as Actions Runner (deploy job)
+    participant Deploy as deploy-pages action
+    participant PagesAPI as GitHub Pages Deployment API
+    participant Pages as GitHub Pages CDN
+    actor Visitor as Resume Visitor
+
+    Note over GH,Queue: Entry points implemented: push to main, workflow_dispatch.
+    Maintainer->>GH: Push commit to main (or manually dispatch workflow)
+    GH->>Queue: Enqueue workflow run (concurrency group: pages)
+    Queue->>BuildJob: Start build job when runner is available
+
+    BuildJob->>BuildJob: actions/checkout@v4
+    BuildJob->>BuildJob: actions/configure-pages@v5
+    BuildJob->>Buildx: Initialize Buildx
+    Buildx->>Docker: Build Dockerfile with GHA cache
+    alt Image build succeeds
+        Docker-->>BuildJob: resume-builder:ci available
+    else Image build fails
+        Docker-->>BuildJob: Build error
+        BuildJob->>GH: Mark workflow failed with logs
+    end
+
+    BuildJob->>Builder: docker run ... sh -lc "uv sync --frozen && uv run src/build.py"
+    Builder->>UV: Sync locked Python dependencies
+    UV->>BuilderPy: Execute build.py
+    BuilderPy->>YAML: Load YAML content
+    BuilderPy->>BuilderPy: Validate required top-level keys
+    alt Validation passes
+        BuilderPy->>Jinja: Render template.tex with custom delimiters
+        Jinja-->>BuilderPy: generated.tex content
+        BuilderPy->>Latex: Compile generated.tex via pdflatex
+        alt pdflatex returncode == 0
+            Latex-->>BuilderPy: generated.pdf
+            BuilderPy->>BuilderPy: Rename generated.pdf -> resume.pdf
+            BuilderPy->>BuilderPy: Delete generated.aux + generated.log
+        else pdflatex returncode != 0
+            Latex-->>BuilderPy: Compilation failure output
+            BuilderPy->>GH: Print truncated pdflatex log and exit 1
+            BuildJob->>GH: Mark workflow failed
+        end
+    else Validation fails
+        BuilderPy->>GH: Raise ValueError and fail run
+        BuildJob->>GH: Mark workflow failed
+    end
+
+    opt Build artifacts prepared on success
+        BuildJob->>BuildJob: Create _site/
+        par Static site assembly
+            BuildJob->>BuildJob: Copy resume.pdf to _site/
+        and Landing page generation
+            BuildJob->>BuildJob: Write static _site/index.html
+        end
+        BuildJob->>Artifact: Upload artifact (name: resume-pages)
+    end
+
+    BuildJob-->>DeployJob: needs: build satisfied
+    DeployJob->>Deploy: actions/deploy-pages@v4
+    Deploy->>PagesAPI: Create deployment with artifact + OIDC token
+    alt Deployment accepted
+        PagesAPI-->>Deploy: Deployment created
+        Deploy->>Pages: Publish new static content
+        DeployJob->>GH: Mark workflow success + page URL
+    else Deployment rejected (e.g., Pages disabled/misconfigured)
+        PagesAPI-->>Deploy: 4xx/5xx error
+        DeployJob->>GH: Mark workflow failed with API error
+    end
+
+    Visitor->>Pages: GET /latest-resume/ or /resume.pdf
+    Note over Pages: Runtime serving is static file hosting only.
+    Note over Pages: No custom middleware/authz/DB/business service layer exists in this repository.
+    Pages-->>Visitor: Static response or HTTP error
+
+    opt Observability hooks currently available
+        GH->>Maintainer: Workflow status, step logs, and failure traces in Actions UI
+    end

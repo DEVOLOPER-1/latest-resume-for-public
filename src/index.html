@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Youssef Mohamed - CS · University of Science &amp; Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#181c22",
+                        "surface-tint": "#5b5e66",
+                        "inverse-surface": "#2d3133",
+                        "background": "#f8f9fb",
+                        "primary-fixed": "#dfe2eb",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface": "#f8f9fb",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "on-surface": "#191c1e",
+                        "on-secondary-container": "#60656d",
+                        "tertiary-fixed-dim": "#bec7d2",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed": "#dee2ec",
+                        "primary": "#000000",
+                        "on-primary-container": "#80848c",
+                        "on-background": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#45474b",
+                        "primary-fixed-dim": "#c3c6cf",
+                        "outline-variant": "#c6c6cb",
+                        "primary-container": "#181c22",
+                        "secondary-fixed-dim": "#c2c7d0",
+                        "secondary": "#5a5f67",
+                        "on-secondary-fixed": "#171c23",
+                        "on-tertiary-container": "#7c858f",
+                        "tertiary-fixed": "#dae3ee",
+                        "tertiary-container": "#141c24",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#3f4850",
+                        "surface-variant": "#e0e3e5",
+                        "surface-bright": "#f8f9fb",
+                        "on-secondary-fixed-variant": "#42474f",
+                        "surface-container": "#eceef0",
+                        "secondary-container": "#dee2ec",
+                        "on-error": "#ffffff",
+                        "tertiary": "#000000",
+                        "outline": "#76777b",
+                        "on-tertiary-fixed": "#141c24",
+                        "inverse-primary": "#c3c6cf",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#43474e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar Component -->
+<nav class="docked full-width top-0 border-b border-outline-variant bg-background flex justify-between items-center w-full px-gutter max-w-container-max mx-auto py-4 z-50 sticky">
+<div class="flex items-center gap-6">
+<span class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-primary">Live Resume</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1 opacity-80 transition-all hover:text-primary transition-colors duration-200" href="#">Overview</a>
+<a class="font-body-md text-body-md text-on-surface-variant pb-1 hover:text-primary transition-colors duration-200" href="#work">Projects</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden md:flex items-center gap-2 px-4 py-2 bg-primary text-on-primary font-body-md text-body-md rounded hover:bg-on-primary-fixed transition-colors hover:scale-105" href="https://devoloper-1.github.io/latest-resume/resume.pdf" download="youssef-mohamed-resume.pdf">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                Download Resume
+            </a>
+<!-- Mobile Menu Icon (Visual Only) -->
+<button class="md:hidden text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 md:py-margin-desktop space-y-12 md:space-y-16 md:space-y-24">
+<!-- Hero Section -->
+<section class="flex flex-col md:flex-row gap-8 items-start">
+<div class="flex-shrink-0">
+<div class="w-32 h-32 md:w-48 md:h-48 rounded border border-outline-variant overflow-hidden bg-surface-container-low p-1">
+<img alt="Youssef Mohamed GitHub profile image" class="w-full h-full object-cover rounded-sm grayscale contrast-125" src="https://github.com/DEVOLOPER-1.png"/>
+</div>
+</div>
+<div class="flex-col space-y-4 max-w-2xl">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-2 md:text-[64px]">Youssef Mohamed</h1>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">CS · University of Science &amp; Technology, Zewail City</p>
+</div>
+<div class="border-l-2 border-primary pl-4 py-1 text-on-surface-variant">
+<p class="font-body-lg text-body-lg md:text-[22px]">
+                        I build ML systems where rigor and deployment aren't in tension — grounded in theory, designed to run.
+                    </p>
+<p class="font-body-md text-body-md mt-2 italic text-on-secondary-container">
+                        Recent: Oral presentation at NetMob25 on mobility modeling.
+                    </p>
+</div>
+<!-- Bio Tags -->
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="px-2 py-1 bg-surface-container border border-outline-variant rounded font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">search</span> Information Retrieval
+                     </span>
+<span class="px-2 py-1 bg-surface-container border border-outline-variant rounded font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">translate</span> NLP
+                     </span>
+<span class="px-2 py-1 bg-surface-container border border-outline-variant rounded font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">visibility</span> Computer Vision
+                     </span>
+<span class="px-2 py-1 bg-surface-container border border-outline-variant rounded font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span> Agentic Systems
+                     </span>
+<span class="px-2 py-1 bg-surface-container border border-outline-variant rounded font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">psychology</span> Explainable AI
+                     </span>
+</div>
+</div>
+</section>
+<!-- Trust Signal / Resume CTA -->
+<section class="border border-outline-variant bg-surface-container-low p-6 rounded flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex flex-col md:flex-row items-center justify-between w-full gap-8 py-4">
+<div class="space-y-2 text-center md:text-left">
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary font-bold">Ready to review my full background?</h3>
+<p class="font-body-lg text-on-surface-variant">Download the latest version of my professional resume in PDF format.</p>
+<p class="text-[11px] text-on-secondary-container opacity-60 mt-4">
+            Technical Note: This document is automatically generated and verified via GitHub Actions.
+        </p>
+</div>
+<a class="whitespace-nowrap px-8 py-4 bg-primary text-on-primary font-bold rounded-full hover:bg-on-primary-fixed transition-all transform hover:scale-105 flex items-center gap-3 shadow-lg" href="https://devoloper-1.github.io/latest-resume/resume.pdf" download="youssef-mohamed-resume.pdf">
+<span class="material-symbols-outlined">download</span>
+        Download Latest Resume (PDF)
+    </a>
+</div></section>
+<!-- Selected Work (Bento Grid) -->
+<section class="space-y-6" id="work">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary border-b border-outline-variant pb-2 font-bold">Selected Work</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Project Card 1 -->
+<div class="border border-outline-variant bg-surface p-6 rounded hover:border-outline transition-colors group flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">movie_edit</span>
+<a class="text-on-surface-variant hover:text-primary" href="https://github.com/DEVOLOPER-1" target="_blank" rel="noopener">
+<span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">Video AI Suite</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Self-supervised colorization (VGG19 + U-Net, WTA diversity loss) with spatio-temporal keyframe extraction — outperforms CLIP-based uniform sampling.</p>
+</div>
+<div class="flex gap-2 mt-4">
+<span class="text-label-sm font-label-sm px-2 py-1 bg-white border border-outline-variant rounded">PyTorch</span>
+<span class="text-label-sm font-label-sm px-2 py-1 bg-white border border-outline-variant rounded">OpenCV</span>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="border border-outline-variant bg-surface p-6 rounded hover:border-outline transition-colors group flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">account_tree</span>
+<a class="text-on-surface-variant hover:text-primary" href="https://github.com/amr-yasser226/support-ticket-nlp-pipeline" target="_blank" rel="noopener">
+<span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">Modular RAG Pipeline</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">MoE intent routing, confidence-based escalation, PII redaction, and hallucination evaluation.</p>
+</div>
+<div class="flex gap-2 mt-4">
+<span class="text-label-sm font-label-sm px-2 py-1 bg-white border border-outline-variant rounded">LangGraph</span>
+<span class="text-label-sm font-label-sm px-2 py-1 bg-white border border-outline-variant rounded">FAISS</span>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="border border-outline-variant bg-surface p-6 rounded hover:border-outline transition-colors group flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">bug_report</span>
+<a class="text-on-surface-variant hover:text-primary" href="https://github.com/DEVOLOPER-1/golden_scarab_swe_mvp" target="_blank" rel="noopener">
+<span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">Golden Scarab</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Bilingual AR/EN search with BERT + BM25 hybrid ranking, autocomplete, and faceted filtering.</p>
+</div>
+<div class="flex gap-2 mt-4">
+<span class="text-label-sm font-label-sm px-2 py-1 bg-white border border-outline-variant rounded">Python</span>
+<span class="text-label-sm font-label-sm px-2 py-1 bg-white border border-outline-variant rounded">Docker</span>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="border border-outline-variant bg-surface p-6 rounded hover:border-outline transition-colors group flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary text-2xl group-hover:scale-110 transition-transform">public</span>
+<div class="flex items-center gap-3">
+<span class="text-label-sm font-label-sm px-2 py-1 border border-primary text-primary rounded uppercase tracking-wider">Oral Presentation</span>
+<a class="text-on-surface-variant hover:text-primary" href="https://github.com/DEVOLOPER-1/SEEM" target="_blank" rel="noopener">
+<span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-primary mb-2">NetMob25 Simulation</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Agent-based model simulating social inequality effects during escaping from a crisis across a multimodal transport network. Oral presentation accepted at NetMob25.</p>
+</div>
+<div class="flex gap-2 mt-4">
+<span class="text-label-sm font-label-sm px-2 py-1 bg-white border border-outline-variant rounded">C++</span>
+<span class="text-label-sm font-label-sm px-2 py-1 bg-white border border-outline-variant rounded">PyTorch</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="mt-auto full-width bottom-0 border-t border-outline-variant bg-background w-full py-8 px-gutter max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+<p class="font-label-md text-label-md text-on-surface-variant">
+            open to research collaborations · internships · building things that matter
+        </p>
+<div class="flex gap-4">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="https://github.com/DEVOLOPER-1" target="_blank" rel="noopener">GitHub</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="https://bio.site/youssef_mohammad" target="_blank" rel="noopener">bio.site</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="https://www.linkedin.com/in/youssef-mohammad-9341a71a7/" target="_blank" rel="noopener">LinkedIn</a>
+</div>
+</footer>
+</body></html>

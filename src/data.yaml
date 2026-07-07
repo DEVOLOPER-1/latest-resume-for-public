@@ -1,0 +1,141 @@
+personal:
+  name: Youssef Mohamed Abdelhameid
+  email: your.email@example.com
+  phone_display: 'your-phone-number'
+  phone_href: '+201000000000'
+  website:
+    url: 'https://bio.site/yourusername'
+    display: 'bio.site/yourusername'
+  linkedin:
+    url: 'https://www.linkedin.com/in/yourusername'
+    display: 'linkedin.com/in/yourusername'
+  github:
+    url: 'https://github.com/yourusername'
+    display: 'github.com/yourusername'
+
+education:
+  institution: 'University of Science and Technology, Zewail City'
+  degree: BS in Computer Science
+  date: 'Sept 2023 -- 2027 (Expected)'
+  gpa: '3.36 / 4.0'
+  coursework: >-
+    Deep Learning, Explainable AI (XAI), Natural Language Processing (NLP),
+    Computer Vision, Statistical Inference, Linear and Non-Linear Programming.
+
+experience:
+  - title: Junior Teaching Assistant
+    company: Zewail City of Science and Technology
+    date: 'Mar 2026 -- June 2026'
+    highlights:
+      - 'Delivered lab sessions for \textbf{110 DSAI-201 students \href{https://drive.google.com/drive/folders/your-folder-id?usp=sharing}{session materials}}.'
+      - 'Led a project building a \textbf{containerized bilingual search engine} (Scrapy, FastAPI, PostgreSQL, Elasticsearch).'
+      - 'Taught web scraping, Arabic/English NLP, and \textbf{CI/CD with GitHub Actions}.'
+
+  - title: Data Science Researcher
+    company: Nile University
+    date: 'July 2025 -- Sept 2025'
+    highlights:
+      - 'Led an end-to-end urban data-science project for the \textbf{NetMob25 Data Challenge}, securing acceptance for an oral presentation.'
+      - 'Implemented a high-fidelity agent-based model in Python to simulate effects of social inequality during crises.'
+      - 'Built a realistic multi-modal simulation environment with simplified network graphs for driving, walking, and public transit.'
+
+  - title: Data Scientist Intern
+    company: CIB Egypt
+    date: 'July 2025 -- Aug 2025'
+    highlights:
+      - 'Completed the CIB Summer Program ``The Green Leap'''' (SAS Ethical AI, sustainability frameworks, banking cybersecurity).'
+      - 'Applied Ethical AI checks (bias detection, explainability) in SAS to validate model fairness and robustness.'
+
+  - title: Freelance Image Processing Specialist
+    company: 'Client (Remote)'
+    date: 'Aug 2024'
+    highlights:
+      - 'Processed fMRI and sMRI datasets for machine learning research with a 3--5 day turnaround.'
+      - 'Built \texttt{NeuroImg2PNG} to batch-convert \texttt{.nii.gz} files to PNG using Google Colab and Drive.'
+      - 'Streamlined neuroimaging workflows for research at the Arab Academy for Science, Technology and Maritime Transport.'
+
+projects:
+  - title: 'VIDEO AI SUITE --- COLORIZATION \& KEYFRAME EXTRACTION'
+    github_url: 'https://github.com/yourusername/your-repo'
+    highlights:
+      - 'Implemented a self-supervised video colorization pipeline (VGG19 + U-Net) with a \textbf{Winner-Takes-All diversity loss}, achieving semantic color separation (sky vs.\ terrain) across temporally consistent frames.'
+      - 'Engineered a keyframe extraction system combining \textbf{STACFP} (spatio-temporal clustering) and a multi-signal \textbf{KeyScore} (semantic + temporal + drop-impact) to eliminate redundancy vs.\ a CLIP-based uniform-sampling baseline.'
+      - '\textbf{Tools:} Python, PyTorch, CLIP (ViT-B/32), VGG19, U-Net, K-Means, OpenCV, Lab Color Space.'
+
+  - title: 'GOLDEN SCARAB --- Search Engine'
+    github_url: 'https://github.com/yourusername/golden_scarab_swe_mvp'
+    highlights:
+      - 'Developed a modular Flask-based e-commerce search engine with autocomplete, dynamic faceted filtering, and relevance ranking via \textbf{Elasticsearch} and NLP models (BERT, BM25/TF--IDF), optimized using \textbf{Polars} for high-performance data pipelines.'
+      - '\textbf{Tools:} Python, Flask, Elasticsearch, NLTK, sentence-transformers, Polars, Docker.'
+
+  - title: 'NLP Customer Support Pipeline --- Modular RAG Template'
+    github_url: 'https://github.com/yourusername/support-ticket-nlp-pipeline'
+    highlights:
+      - 'Built a reusable \textbf{modular RAG pipeline} with swappable classifier, retriever, and generator components.'
+      - 'Implemented \textbf{Mixture-of-Experts intent routing} with confidence-based human escalation.'
+      - 'Added multilingual support, PII redaction, and structured evaluation for faithfulness and hallucination.'
+      - '\textbf{Tools:} Python, PyTorch, HuggingFace, FAISS, spaCy, fastText.'
+
+technologies:
+  - category: 'Programming Languages'
+    tools: 'Python, C++, C\#, Java, R, JavaScript, SQL'
+  - category: 'Data Science \& Machine Learning'
+    tools: 'scikit-learn, PyTorch, TensorFlow (familiar), imbalanced-learn, Pandas, NumPy, Polars, PyJanitor, Pandera, model evaluation (AUC, precision/recall)'
+  - category: 'Data Visualization \& Dashboards'
+    tools: 'Matplotlib, Seaborn, Plotly, Plotly Dash, amCharts, Tableau, Streamlit'
+  - category: 'Information Retrieval \& NLP'
+    tools: 'Elasticsearch, PyTerrier, NLTK, Sentence-Transformers, BM25, TF--IDF, text preprocessing'
+  - category: 'LLMs \& Agentic AI'
+    tools: 'LangGraph, LangChain, RAG (Retrieval-Augmented Generation), Mixture-of-Experts (MoE), multi-agent systems, prompt engineering, PII detection'
+  - category: 'Web Development \& Scraping'
+    tools: 'Flask, Django, RESTful APIs, HTML/CSS, Tailwind CSS, BeautifulSoup, Scrapy, SerpAPI, Firebase'
+  - category: 'Software Engineering \& Tools'
+    tools: 'OOP, Algorithms \& Data Structures, Git \& GitHub, Docker, CUDA (GPU)'
+
+courses:
+  - title: Full Stack Web Development using Python
+    title_url: 'https://drive.google.com/file/d/your-file-id/view?usp=sharing'
+    institution: ITI
+    date: 'Aug 2025 -- Sept 2025'
+    highlights:
+      - 'Completed a 120-hour intensive \textbf{Full-Stack Web Development} training covering \textbf{Python}, \textbf{Flask}, \textbf{Django}, and \textbf{PostgreSQL}, with emphasis on OOP, problem-solving, and practical client--server integration.'
+
+  - title: Google Professional Data Analytics
+    title_url: 'https://drive.google.com/file/d/your-file-id/view?usp=sharing'
+    institution: ''
+    date: 'June 2024 -- Aug 2024'
+    highlights:
+      - 'Covered end-to-end data analysis workflows including data cleaning, visualization, and reporting.'
+      - 'Applied \textbf{Google Sheets}, \textbf{SQL}, and \textbf{Tableau} to analyze datasets and deliver actionable insights for stakeholders.'
+
+honors:
+  - title: 'Certificate --- AI Customer Support Agent (EVA Hackathon)'
+    date: 'Feb 2026'
+    issuer: 'Eva Group Limited \& Coach Academy'
+    issuer_url: 'https://drive.google.com/file/d/your-file-id/view?usp=sharing'
+    highlights:
+      - 'Built a hierarchical multi-agent support system (MoE) using LangGraph and RAG.'
+      - 'Implemented intent routing, PII detection, and response validation for production readiness.'
+
+  - title: 'Finalist --- GEM Hackathon Hack\_045'
+    date: 'Dec 2025'
+    issuer: 'The Grand Egyptian Museum'
+    issuer_url: 'https://drive.google.com/file/d/your-file-id/view?usp=sharing'
+    highlights:
+      - 'Selected as a finalist from 100+ teams and served as the sole team representing my organization.'
+      - 'Designed the \textbf{Grand Egyptian Experience Tracker}: a 6-layer ecosystem combining IoT, computer vision, and predictive analytics to gamify and analyze visitor journeys.'
+
+  - title: 'Certificate of Achievement --- ECPC 2025'
+    date: 'Aug 2025'
+    issuer: 'The ICPC International Collegiate Programming Contest'
+    issuer_url: 'https://drive.google.com/file/d/your-file-id/view?usp=sharing'
+    highlights:
+      - 'Competed in the Egyptian Collegiate Programming Contest (ECPC), applying advanced algorithms and data-structure skills to solve complex, timed problems under competition conditions.'
+
+extracurricular:
+  - role: Human Resources Specialist
+    org: 'IEEE Zewail City (Seasonal Role)'
+    org_url: 'https://drive.google.com/file/d/your-file-id/view?usp=sharing'
+    date: 'Nov 2024 -- Aug 2025'
+    highlights:
+      - 'Contributed to planning and execution of IEEE community events and technical sessions; collaborated with the Content Development team to boost volunteer participation and organizational engagement.'

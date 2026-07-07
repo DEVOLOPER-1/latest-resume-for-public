@@ -1,0 +1,9 @@
+.git
+.github
+.idea
+.venv
+__pycache__
+*.pyc
+resume.pdf
+generated.tex
+_site

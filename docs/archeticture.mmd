@@ -1,0 +1,45 @@
+graph TD
+
+    %% Development
+    A[Local Machine]
+    B[GitHub Repository]
+    C[GitHub Actions Workflow]
+
+    A -->|git push| B
+    B -->|Trigger CI/CD| C
+
+    %% Workflow
+    subgraph Workflow["GitHub Actions Runner"]
+        D[Checkout Repository]
+        E[Start Docker Container<br/>TeX + Python Environment]
+        F[Run build.py]
+    end
+
+    C --> D
+    D --> E
+    E --> F
+
+    %% Docker Build
+    subgraph Docker["Docker Build Environment"]
+        Y[data.yaml]
+        T[template.tex]
+
+        J[Jinja2 Template Engine]
+        G[generated.tex]
+        P[pdflatex]
+        R[resume.pdf]
+
+        Y --> J
+        T --> J
+        J --> G
+        G --> P
+        P --> R
+    end
+
+    F --> J
+
+    %% Deployment
+    R --> S[Deploy to gh-pages]
+    S --> U[GitHub Pages Website]
+
+    Recruiter([Recruiter]) -->|Download PDF| U

@@ -1,0 +1,43 @@
+sequenceDiagram
+    autonumber
+    actor User as Resume Visitor
+    participant Browser as Web Browser
+    participant Pages as GitHub Pages (Static Host)
+    participant Landing as index.html (Generated in CI)
+    participant PDF as resume.pdf (Generated in CI)
+
+    Note over User,Pages: Static client only (no custom frontend framework in repository)
+
+    User->>Browser: Navigate to /latest-resume/
+    Browser->>Browser: Enter loading state (document request pending)
+    Browser->>Pages: GET /latest-resume/
+    alt index.html available
+        Pages-->>Browser: 200 OK + Landing HTML
+        Browser->>Landing: Parse and render page content
+        Note over Browser,Landing: UI components are static HTML elements (title, description, CTA link)
+        Note over Browser: No client-side state manager/store exists, state is browser-native (loading/render/error)
+        Note over Browser,Pages: No API calls are made to an application backend.
+        Note over Browser,Pages: No authentication flow is implemented for viewers.
+    else index.html missing or inaccessible
+        Pages-->>Browser: 404/5xx
+        Browser->>User: Show browser error page
+    end
+
+    opt User clicks "Open resume.pdf"
+        User->>Browser: Click CTA link
+        Browser->>Browser: Navigate route to ./resume.pdf
+        Browser->>Browser: Enter loading state (PDF request pending)
+        Browser->>Pages: GET /latest-resume/resume.pdf
+        alt PDF exists
+            Pages-->>Browser: 200 OK + PDF bytes
+            Browser->>User: Render/download PDF
+        else PDF missing or unavailable
+            Pages-->>Browser: 404/5xx
+            Browser->>User: Show failed file load/download error
+        end
+    end
+
+    loop Subsequent visits or refreshes
+        User->>Browser: Refresh page or revisit URL
+        Browser->>Pages: Re-request static assets (or use browser cache)
+    end
