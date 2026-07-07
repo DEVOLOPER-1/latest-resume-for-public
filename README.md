@@ -4,7 +4,7 @@ An automated CI/CD pipeline for generating a professional LaTeX resume from stru
 
 Instead of editing LaTeX directly, resume content is maintained as structured data. Every push to GitHub automatically generates a fresh PDF and publishes it through GitHub Pages.
 
-[![Build and Deploy Resume](https://github.com/DEVOLOPER-1/latest-resume/actions/workflows/build-deploy.yml/badge.svg)](https://github.com/DEVOLOPER-1/latest-resume/actions/workflows/build-deploy.yml)
+[![Build and Deploy Resume](https://github.com/DEVOLOPER-1/latest-resume-for-public/actions/workflows/build-deploy.yml/badge.svg)](https://github.com/DEVOLOPER-1/latest-resume-for-public/actions/workflows/build-deploy.yml)
 [![pages-build-deployment](https://github.com/DEVOLOPER-1/latest-resume/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/DEVOLOPER-1/latest-resume/actions/workflows/pages/pages-build-deployment)
 [![Live Site](https://img.shields.io/badge/Live%20Site-devoloper--1.github.io%2Flatest--resume-blue?logo=githubpages)](https://devoloper-1.github.io/latest-resume/)
 ---
